@@ -1,2 +1,2 @@
 # Terraform-OCI-Study
-Scripts Terraform OCI
+Scripts Terraform OCI.
