@@ -1,43 +1,27 @@
-# # Execute commands in Linux Instance
+resource "null_resource" "transfer_and_execute_script" {
+  depends_on = [oci_core_instance.ubuntu_instance]
 
-# resource "null_resource" "remote-exec" {
+  provisioner "file" {
+    source      = "setup_fw.sh"
+    destination = "/tmp/setup_fw.sh"
 
-#   depends_on = [oci_core_instance.ubuntu_instance]
+    connection {
+      host        = oci_core_instance.ubuntu_instance.public_ip
+      user        = "ubuntu"
+      private_key = file(var.path_local_private_key)
+    }
+  }
 
-#   provisioner "remote-exec" {
+  provisioner "remote-exec" {
+    inline = [
+      "chmod +x /tmp/setup_fw.sh",
+      "sudo /tmp/setup_fw.sh"
+    ]
 
-#     connection {
-
-#       agent       = false
-
-#       timeout     = "30m"
-
-#       host        = oci_core_instance.ubuntu_instance.public_ip
-
-#       user        = "ubuntu"
-
-#       private_key = file(var.path_local_private_key)
-
-#     }
-
-#     inline = [
-
-#       "touch /home/ubuntu/logs",
-
-#       "sudo apt-get update >> /home/ubuntu/logs",
-
-#       "echo ' ' >> /home/ubuntu/logs",
-
-#       "echo ' ' >> /home/ubuntu/logs",
-
-#       "echo ' ' >> /home/ubuntu/logs",
-
-#       "sudo apt-get install net-tools nmap vim telnet -y >> /home/ubuntu/logs",
-
-#       "echo FUNCIONOU >> /home/ubuntu/logs"
-
-#     ]
-
-#   }
-
-# }
+    connection {
+      host        = oci_core_instance.ubuntu_instance.public_ip
+      user        = "ubuntu"
+      private_key = file(var.path_local_private_key)
+    }
+  }
+}

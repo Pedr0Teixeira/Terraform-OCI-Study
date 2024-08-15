@@ -13,10 +13,10 @@ resource "oci_core_instance" "ubuntu_instance" {
     }
 
     # Optional
-    display_name = "UBUNTU-TERRAFORM"
+    display_name = "UBUNTU-FW"
     create_vnic_details {
         assign_public_ip = true
-        private_ip = "10.69.69.254"
+        #private_ip = "10.69.69.254"
         subnet_id = oci_core_subnet.vcn_public_subnet.id
     }
     metadata = {
