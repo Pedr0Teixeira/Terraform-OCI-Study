@@ -2,7 +2,7 @@
 
 # resource "null_resource" "remote-exec" {
 
-#   depends_on = [oci_core_instance.ubuntu_instance2]
+#   depends_on = [oci_core_instance.ubuntu_instance]
 
 #   provisioner "remote-exec" {
 
@@ -12,7 +12,7 @@
 
 #       timeout     = "30m"
 
-#       host        = oci_core_instance.ubuntu_instance2.public_ip
+#       host        = oci_core_instance.ubuntu_instance.public_ip
 
 #       user        = "ubuntu"
 
