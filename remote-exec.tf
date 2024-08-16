@@ -1,43 +1,53 @@
-# # Execute commands in Linux Instance
+# Recurso nulo para transferir e executar um script em uma instância de Ubuntu
+resource "null_resource" "transfer_and_execute_script" {
+  # Define que este recurso depende da criação da instância e do IP público
+  depends_on = [
+    oci_core_instance.ubuntu_instance,
+    oci_core_public_ip.ubuntu_instance
+  ]
 
-# resource "null_resource" "remote-exec" {
+  # Provisionador para transferir o script para a instância
+  provisioner "file" {
+    # Caminho do script local que será transferido
+    source = "setup_fw.sh"
 
-#   depends_on = [oci_core_instance.ubuntu_instance2]
+    # Caminho no qual o script será armazenado na instância remota
+    destination = "/tmp/setup_fw.sh"
 
-#   provisioner "remote-exec" {
+    # Configuração da conexão para a instância
+    connection {
+      # Endereço IP público da instância onde o script será transferido
+      host = oci_core_public_ip.ubuntu_instance.ip_address
 
-#     connection {
+      # Nome do usuário para conexão SSH
+      user = "ubuntu"
 
-#       agent       = false
+      # Caminho para a chave privada usada para autenticação SSH
+      private_key = file(var.path_local_private_key)
+    }
+  }
 
-#       timeout     = "30m"
+  # Provisionador para executar o script na instância
+  provisioner "remote-exec" {
+    # Comandos a serem executados remotamente
+    inline = [
+      # Torna o script executável
+      "chmod +x /tmp/setup_fw.sh",
 
-#       host        = oci_core_instance.ubuntu_instance2.public_ip
+      # Executa o script com permissões de superusuário
+      "sudo /tmp/setup_fw.sh"
+    ]
 
-#       user        = "ubuntu"
+    # Configuração da conexão para a instância
+    connection {
+      # Endereço IP público da instância para execução dos comandos
+      host = oci_core_public_ip.ubuntu_instance.ip_address
 
-#       private_key = file(var.path_local_private_key)
+      # Nome do usuário para conexão SSH
+      user = "ubuntu"
 
-#     }
-
-#     inline = [
-
-#       "touch /home/ubuntu/logs",
-
-#       "sudo apt-get update >> /home/ubuntu/logs",
-
-#       "echo ' ' >> /home/ubuntu/logs",
-
-#       "echo ' ' >> /home/ubuntu/logs",
-
-#       "echo ' ' >> /home/ubuntu/logs",
-
-#       "sudo apt-get install net-tools nmap vim telnet -y >> /home/ubuntu/logs",
-
-#       "echo FUNCIONOU >> /home/ubuntu/logs"
-
-#     ]
-
-#   }
-
-# }
+      # Caminho para a chave privada usada para autenticação SSH
+      private_key = file(var.path_local_private_key)
+    }
+  }
+}

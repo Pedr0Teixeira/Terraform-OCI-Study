@@ -1,84 +1,109 @@
-# Outputs for compartment
-
-output "compartment-name" {
-  value = oci_identity_compartment.tf-compartment.name
-}
-
-output "compartment-OCID" {
-  value = oci_identity_compartment.tf-compartment.id
-}
-
+# Saída para o ID do Internet Gateway criado.
 output "internet_gateway_id" {
-  description = "ID do Internet Gateway criado"
+  description = "ID do Internet Gateway criado."
   value       = oci_core_internet_gateway.internet_gateway.id
 }
 
-# The "name" of the availability domain to be used for the compute instance.
+# Nome do primeiro domínio de disponibilidade usado para a instância de computação.
 output "name-of-first-availability-domain" {
-  value = data.oci_identity_availability_domains.ads.availability_domains[0].name
+  description = "Nome do primeiro domínio de disponibilidade obtido para a instância de computação."
+  value       = data.oci_identity_availability_domains.ads.availability_domains[0].name
 }
 
-# output "instance-name" {
-#   value = oci_core_instance.ubuntu_instance.display_name
-# }
+# Nome de exibição da instância criada.
+output "instance-name" {
+  description = "Nome de exibição da instância criada."
+  value       = oci_core_instance.ubuntu_instance.display_name
+}
 
-# output "instance-OCID" {
-#   value = oci_core_instance.ubuntu_instance.id
-# }
+# OCID (Oracle Cloud Identifier) da instância criada.
+output "instance-OCID" {
+  description = "OCID da instância criada."
+  value       = oci_core_instance.ubuntu_instance.id
+}
 
-# output "instance-region" {
-#   value = oci_core_instance.ubuntu_instance.region
-# }
+# Região onde a instância está localizada.
+output "instance-region" {
+  description = "Região onde a instância está localizada."
+  value       = oci_core_instance.ubuntu_instance.region
+}
 
-# output "instance-shape" {
-#   value = oci_core_instance.ubuntu_instance.shape
-# }
+# Shape da instância, que inclui a configuração de CPU e memória.
+output "instance-shape" {
+  description = "Shape da instância, que especifica a configuração de CPU e memória."
+  value       = oci_core_instance.ubuntu_instance.shape
+}
 
-# output "instance-state" {
-#   value = oci_core_instance.ubuntu_instance.state
-# }
+# Estado atual da instância (por exemplo, RUNNING, STOPPED).
+output "instance-state" {
+  description = "Estado atual da instância (por exemplo, RUNNING, STOPPED)."
+  value       = oci_core_instance.ubuntu_instance.state
+}
 
-# output "instance-OCPUs" {
-#   value = oci_core_instance.ubuntu_instance.shape_config[0].ocpus
-# }
+# Número de OCPUs configurados para a instância.
+output "instance-OCPUs" {
+  description = "Número de OCPUs configurados para a instância."
+  value       = oci_core_instance.ubuntu_instance.shape_config[0].ocpus
+}
 
-# output "instance-memory-in-GBs" {
-#   value = oci_core_instance.ubuntu_instance.shape_config[0].memory_in_gbs
-# }
+# Quantidade de memória (em GBs) configurada para a instância.
+output "instance-memory-in-GBs" {
+  description = "Quantidade de memória (em GBs) configurada para a instância."
+  value       = oci_core_instance.ubuntu_instance.shape_config[0].memory_in_gbs
+}
 
-# output "private-ip" {
-#   value = oci_core_instance.ubuntu_instance.private_ip
-# }
+# IP privado atribuído à instância.
+output "private-ip" {
+  description = "IP privado atribuído à instância."
+  value       = oci_core_instance.ubuntu_instance.private_ip
+}
 
-# output "time-created" {
-#   value = oci_core_instance.ubuntu_instance.time_created
-# }
+# Hora em que a instância foi criada.
+output "time-created" {
+  description = "Hora em que a instância foi criada."
+  value       = oci_core_instance.ubuntu_instance.time_created
+}
 
-# # #### Outputs DB Oracle
-# # output "db_system_id" {
-# #   value = oci_database_db_system.tf_db.id
-# # }
+### Saídas para o sistema de banco de dados Oracle
 
-# # output "db_system_hostname" {
-# #   value = oci_database_db_system.tf_db.hostname
-# # }
+# ID do sistema de banco de dados criado.
+output "db_system_id" {
+  description = "ID do sistema de banco de dados criado."
+  value       = oci_database_db_system.tf_db.id
+}
 
-# # output "db_system_shape" {
-# #   value = oci_database_db_system.tf_db.shape
-# # }
+# Nome do host do sistema de banco de dados.
+output "db_system_hostname" {
+  description = "Nome do host do sistema de banco de dados."
+  value       = oci_database_db_system.tf_db.hostname
+}
 
-# # output "db_system_display_name" {
-# #   value = oci_database_db_system.tf_db.display_name
-# # }
+# Shape do sistema de banco de dados, que inclui a configuração de CPU e memória.
+output "db_system_shape" {
+  description = "Shape do sistema de banco de dados, que especifica a configuração de CPU e memória."
+  value       = oci_database_db_system.tf_db.shape
+}
 
-# # output "db_system_data_storage_size" {
-# #   value = oci_database_db_system.tf_db.data_storage_size_in_gb
-# # }
+# Nome de exibição do sistema de banco de dados.
+output "db_system_display_name" {
+  description = "Nome de exibição do sistema de banco de dados."
+  value       = oci_database_db_system.tf_db.display_name
+}
 
-# # output "db_system_subnet_id" {
-# #   value = oci_database_db_system.tf_db.subnet_id
-# # }
+# Tamanho do armazenamento de dados do sistema de banco de dados, em GBs.
+output "db_system_data_storage_size" {
+  description = "Tamanho do armazenamento de dados do sistema de banco de dados, em GBs."
+  value       = oci_database_db_system.tf_db.data_storage_size_in_gb
+}
 
-# # output "db_system_license_model" {
-# #   value = oci_database_db_system.tf_db.license_model
-# # }
+# OCID da subnet onde o sistema de banco de dados está localizado.
+output "db_system_subnet_id" {
+  description = "OCID da subnet onde o sistema de banco de dados está localizado."
+  value       = oci_database_db_system.tf_db.subnet_id
+}
+
+# Modelo de licença do sistema de banco de dados (por exemplo, Licença incluída ou Licença própria).
+output "db_system_license_model" {
+  description = "Modelo de licença do sistema de banco de dados (por exemplo, Licença incluída ou Licença própria)."
+  value       = oci_database_db_system.tf_db.license_model
+}
