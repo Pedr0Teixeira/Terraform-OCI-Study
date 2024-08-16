@@ -16,6 +16,7 @@ resource "oci_core_instance" "ubuntu_instance" {
     assign_public_ip = false
     private_ip       = "10.69.69.254"
     subnet_id        = oci_core_subnet.vcn_public_subnet.id
+    skip_source_dest_check = true
   }
   metadata = {
     ssh_authorized_keys = file(var.path_local_public_key)

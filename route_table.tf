@@ -29,11 +29,11 @@ resource "oci_core_route_table" "route_table_private" {
     destination_type  = "SERVICE_CIDR_BLOCK"
     description       = "Rota para todos os serviços PaaS na rede Oracle"
   }  
-  # route_rules {
-  #   destination        = "0.0.0.0/0"
-  #   destination_type   = "CIDR_BLOCK"
-  #   network_entity_id  = "${oci_core_private_ip.prod_private_ip.id}"
-  # }
+  route_rules {
+    destination        = "0.0.0.0/0"
+    destination_type   = "CIDR_BLOCK"
+    network_entity_id  = data.oci_core_private_ips.private_ips_vnic.private_ips[0].id
+  }
 }
 
 resource "oci_core_route_table" "route_table_public" {

@@ -64,6 +64,7 @@ echo "Aplicando regras de iptables..."
 iptables -t nat -A POSTROUTING -s 10.69.69.0/25 -o enp0s6 -j MASQUERADE
 iptables -I FORWARD -s 0.0.0.0/0 -d 10.69.69.0/25 -j ACCEPT
 iptables -I FORWARD -j ACCEPT
+iptables -t nat -I PREROUTING -p tcp --dport 2200 -j DNAT --to-destination 10.69.69.25:22
 if [ $? -eq 0 ]; then
   status "Regras de iptables aplicadas"
 else
