@@ -53,7 +53,7 @@ variable "db_database_edition" {
 }
 variable "db_license_model" {
   type    = string
-  default = "LICENSE_INCLUDED"
+  default = "LICENSE_INCLUDED" # TESTAR COM BYOL
 }
 variable "db_node_count" {
   type    = number
