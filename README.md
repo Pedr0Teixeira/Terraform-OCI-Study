@@ -71,3 +71,23 @@ No arquivo `remote-exec.tf`, configure o provisionamento remoto para executar sc
 1. **Inicialize o Terraform**:
    ```bash
    terraform init
+
+2. **Revise o plano de execução**:
+   ```bash
+   terraform plan
+
+3. **Aplique a configuração**:
+   ```bash
+   terraform apply
+
+4. **Destrua a infraestrutura (se necessário)**:
+   ```bash
+   terraform destroy
+
+## Notas Importantes
+
+- **Segurança**: Certifique-se de que suas chaves privadas e outras informações sensíveis não sejam expostas ou comprometidas. Utilize ferramentas de gerenciamento de segredos e controle de acesso apropriados.
+
+- **Variáveis Sensíveis**: As variáveis como senhas e chaves privadas devem ser gerenciadas com cuidado e nunca devem ser compartilhadas publicamente.
+
+- **Documentação do Terraform**: Para mais detalhes sobre o uso do Terraform com OCI, consulte a [documentação oficial do Terraform](https://registry.terraform.io/providers/oracle/oci/latest/docs).
