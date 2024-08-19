@@ -9,13 +9,13 @@ variable "compartment_id" {
 # Senha de administrador do banco de dados Oracle. Marcar como sensível para segurança
 variable "db_admin_password" {
   type    = string
-  default = "TesteccmSenha123##"
+  default = "TestecomSenha123##"
 }
 
 # Nome do banco de dados Oracle a ser criado
 variable "db_name" {
   type    = string
-  default = "CCM"
+  default = "PEDRO_TESTE"
 }
 
 # Caminho para a chave pública usada para acesso SSH. Marcar como sensível para segurança
@@ -27,7 +27,7 @@ variable "db_public_key" {
 # Nome de exibição do banco de dados Oracle
 variable "db_display_name" {
   type    = string
-  default = "CCM-BANCORA-PAAS"
+  default = "PEDRO-BANCORA-PAAS"
 }
 
 # Nome do Pluggable Database (PDB) dentro do banco de dados Oracle
@@ -39,7 +39,7 @@ variable "db_pdb_name" {
 # Nome do host para o banco de dados Oracle
 variable "db_hostname" {
   type    = string
-  default = "CCM-BANCORA-PAAS"
+  default = "PEDRO-BANCORA-PAAS"
 }
 
 # Domínio do host para o banco de dados Oracle
